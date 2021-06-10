@@ -26,7 +26,7 @@ class Summarizer:
 
         from mover.model import Cutter
         msgs_by_cut = [' '.join(Cutter.cut(msg)).lower() for msg in msgs]
-        predicts = Model.predict(msgs)
+        predicts = Model.predict(msgs_by_cut)
         return [cls.postprocess(msg, predict) for msg, predict in zip(msgs_by_cut, predicts)]
 
     @classmethod
