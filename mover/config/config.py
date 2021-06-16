@@ -2,7 +2,7 @@ import os
 
 
 class Config:
-    _must_params = {'MODEL_DIR'}
+    _must_params = {'CHECK_DIR'}
 
     @classmethod
     def init(cls, **kwargs):
@@ -14,10 +14,13 @@ class Config:
         for k, v in kwargs.items():
             if k in cls.__dict__:
                 setattr(cls, k, v)
+        cls.MODEL_DIR = f'{cls.CHECK_DIR}/model.pdparams'
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     MODEL_NAME = 'ernie'
+    CHECK_DIR = ''
     MODEL_DIR = ''
+
     WORD_DIR = f'{BASE_DIR}/../static/words.txt'
     VOCAB_DIR = f'{BASE_DIR}/../static/vocab.txt'
     STOP_WORD_DIR = f'{BASE_DIR}/../static/stop_words.txt'

@@ -5,10 +5,10 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mover.model import Cutter, Model
-from mover.summarizer import Summarizer
+from mover.action import Summarizer
 from mover.config import CLI
 
-from flask import Flask, request, send_from_directory
+from flask import Flask, request
 from gevent import monkey
 from gevent.pywsgi import WSGIServer
 

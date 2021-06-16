@@ -18,3 +18,11 @@ class Model:
     @classmethod
     def predict(cls, msgs: list):
         return cls.model.predict([[msg] for msg in msgs], use_gpu=True)
+
+    @classmethod
+    def get_tokenizer(cls):
+        return cls.model.get_tokenizer()
+
+    @classmethod
+    def parameters(cls):
+        return cls.model.parameters()
