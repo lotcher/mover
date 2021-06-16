@@ -1,8 +1,11 @@
 import os
 
+SERVICE_MODE = 'service'
+
 
 class Config:
     _must_params = {'CHECK_DIR'}
+    MODE = SERVICE_MODE
 
     @classmethod
     def init(cls, **kwargs):

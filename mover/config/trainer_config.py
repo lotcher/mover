@@ -1,8 +1,11 @@
 from .config import Config
 
+TRAIN_MODE = 'train'
+
 
 class TrainerConfig(Config):
     _must_params = {'TRAIN_DATA_DIR', 'EVAL_DATA_DIR'}
+    MODE = TRAIN_MODE
 
     TRAIN_DATA_DIR = ''
     EVAL_DATA_DIR = ''

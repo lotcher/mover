@@ -5,12 +5,12 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mover.model import Cutter, Model
-from mover.action import Summarizer
-from mover.config import CLI
+from mover.action import Summarizer, train
+from mover.config import CLI, Config
+from mover.config.config import SERVICE_MODE
+from mover.config.trainer_config import TRAIN_MODE
 
 from flask import Flask, request
-from gevent import monkey
-from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
@@ -34,11 +34,20 @@ def summarize():
     }
 
 
+def run_service():
+    from gevent import monkey
+    from gevent.pywsgi import WSGIServer
+
+    monkey.patch_all()
+    print('--------------------Mover告警摘要 启动成功--------------------')
+    WSGIServer(('0.0.0.0', 10000), app).serve_forever()
+
+
 if __name__ == '__main__':
     for cls in [CLI, Cutter, Model, Summarizer]:
         cls.init()
 
-    monkey.patch_all()
-
-    print('--------------------Mover告警摘要 启动成功--------------------')
-    WSGIServer(('0.0.0.0', 10000), app).serve_forever()
+    {
+        SERVICE_MODE: run_service,
+        TRAIN_MODE: train
+    }[Config.MODE]()

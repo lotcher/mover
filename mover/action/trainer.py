@@ -17,7 +17,7 @@ def train():
         tokenizer=Model.get_tokenizer(), label_list=Model.labels, mode='dev', split_char=' '
     )
 
-    optimizer = paddle.optimizer.Adam(learning_rate=5e-5, parameters=Model.parameters())
+    optimizer = paddle.optimizer.Adam(learning_rate=TrainerConfig.LEARNING_RATE, parameters=Model.parameters())
     trainer = hub.Trainer(Model.model, optimizer, checkpoint_dir=TrainerConfig.CHECK_DIR, use_gpu=TrainerConfig.USE_GPU)
 
     trainer.train(train_data, epochs=TrainerConfig.EPOCHS, batch_size=TrainerConfig.BATCH_SIZE, eval_dataset=eval_data)
