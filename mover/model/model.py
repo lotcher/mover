@@ -17,7 +17,8 @@ class Model:
 
     @classmethod
     def predict(cls, msgs: list):
-        return cls.model.predict([[msg] for msg in msgs], use_gpu=True)
+        from mover.config import Config
+        return cls.model.predict([[msg] for msg in msgs], use_gpu=Config.USE_GPU)
 
     @classmethod
     def get_tokenizer(cls):

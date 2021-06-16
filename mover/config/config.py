@@ -20,6 +20,7 @@ class Config:
     MODEL_NAME = 'ernie'
     CHECK_DIR = ''
     MODEL_DIR = ''
+    USE_GPU = False
 
     WORD_DIR = f'{BASE_DIR}/../static/words.txt'
     VOCAB_DIR = f'{BASE_DIR}/../static/vocab.txt'

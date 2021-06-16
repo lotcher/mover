@@ -18,8 +18,8 @@ def train():
     )
 
     optimizer = paddle.optimizer.Adam(learning_rate=5e-5, parameters=Model.parameters())
-    trainer = hub.Trainer(Model.model, optimizer, checkpoint_dir=TrainerConfig.CHECK_DIR, use_gpu=True)
+    trainer = hub.Trainer(Model.model, optimizer, checkpoint_dir=TrainerConfig.CHECK_DIR, use_gpu=TrainerConfig.USE_GPU)
 
-    trainer.train(train_data, epochs=1, batch_size=64, eval_dataset=eval_data)
+    trainer.train(train_data, epochs=TrainerConfig.EPOCHS, batch_size=TrainerConfig.BATCH_SIZE, eval_dataset=eval_data)
 
     trainer.save_model(TrainerConfig.CHECK_DIR)
