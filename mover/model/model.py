@@ -1,8 +1,12 @@
 import paddlehub as hub
 
+UNK_TOKEN = '[UNK]'
+SEP_TOKEN = 'O'
+SUB_TOKEN = '##'
+
 
 class Model:
-    labels = ['0', '1', 'O']
+    labels = ['0', '1', SEP_TOKEN]
     model = None
 
     @classmethod
@@ -18,7 +22,10 @@ class Model:
     @classmethod
     def predict(cls, msgs: list):
         from mover.config import Config
-        return cls.model.predict([[msg] for msg in msgs], use_gpu=Config.USE_GPU)
+        return [
+            p[1:p.index(SEP_TOKEN, 1)]
+            for p in cls.model.predict([[msg] for msg in msgs], use_gpu=Config.USE_GPU)
+        ]
 
     @classmethod
     def get_tokenizer(cls):

@@ -1,9 +1,6 @@
 from paddlenlp.transformers import WordpieceTokenizer, PretrainedTokenizer
 from mover.model import Model
-
-UNK_TOKEN = '[UNK]'
-SEP_TOKEN = 'O'
-SUB_TOKEN = '##'
+from mover.model.model import SEP_TOKEN, SUB_TOKEN, UNK_TOKEN
 
 
 class Summarizer:
@@ -31,7 +28,6 @@ class Summarizer:
 
     @classmethod
     def postprocess(cls, msg: str, predict: list):
-        predict = predict[1:predict.index(SEP_TOKEN, 1)]
         tokens = cls.wt.tokenize(msg)
 
         s, summary = '', []
