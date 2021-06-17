@@ -7,6 +7,7 @@ from os.path import dirname, basename
 def train():
     from mover.model import Model
     from mover.config import TrainerConfig
+    from .evaluator import evaluate
     train_data = SeqLabelingDataset(
         base_path=dirname(TrainerConfig.TRAIN_DATA_DIR), data_file=basename(TrainerConfig.TRAIN_DATA_DIR),
         tokenizer=Model.get_tokenizer(), label_list=Model.labels, mode='train', split_char=' '
@@ -21,5 +22,5 @@ def train():
     trainer = hub.Trainer(Model.model, optimizer, checkpoint_dir=TrainerConfig.CHECK_DIR, use_gpu=TrainerConfig.USE_GPU)
 
     trainer.train(train_data, epochs=TrainerConfig.EPOCHS, batch_size=TrainerConfig.BATCH_SIZE, eval_dataset=eval_data)
-
+    evaluate()
     trainer.save_model(TrainerConfig.CHECK_DIR)
