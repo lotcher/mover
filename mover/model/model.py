@@ -22,9 +22,10 @@ class Model:
     @classmethod
     def predict(cls, msgs: list):
         from mover.config import Config
+        from mover.tools import catch
         return [
-            p[1:p.index(SEP_TOKEN, 1)]
-            for p in cls.model.predict([[msg] for msg in msgs], use_gpu=Config.USE_GPU)
+            p[1:catch(except_return=1, log=f'失败的msg为[{msgs[i]}]')(lambda: p.index(SEP_TOKEN, 1))()]
+            for i, p in enumerate(cls.model.predict([[msg] for msg in msgs], use_gpu=Config.USE_GPU))
         ]
 
     @classmethod

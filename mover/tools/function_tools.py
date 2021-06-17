@@ -1,5 +1,5 @@
-import logging
 from functools import wraps
+from .logger import Logger
 
 
 def catch(except_func=print, except_return=None, log=''):
@@ -11,7 +11,7 @@ def catch(except_func=print, except_return=None, log=''):
             except Exception:
                 import traceback
                 except_func()
-                logging.error(f'{log} \n {traceback.print_exc()}')
+                Logger.error(f'{log} \n {traceback.print_exc()}')
                 return except_return
 
         return wrapper
