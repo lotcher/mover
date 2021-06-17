@@ -6,6 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mover.model import Cutter, Model
 from mover.action import Summarizer, train
+from mover.tools import LogHelper
 from mover.config import CLI, Config
 from mover.config.config import SERVICE_MODE
 from mover.config.trainer_config import TRAIN_MODE
@@ -44,7 +45,7 @@ def run_service():
 
 
 if __name__ == '__main__':
-    for cls in [CLI, Cutter, Model, Summarizer]:
+    for cls in [LogHelper, CLI, Cutter, Model, Summarizer]:
         cls.init()
 
     {
