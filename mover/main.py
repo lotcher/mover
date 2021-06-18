@@ -5,11 +5,11 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mover.model import Cutter, Model
-from mover.action import Summarizer, train
+from mover.action import Summarizer, train, evaluate
 from mover.tools import Logger
 from mover.config import CLI, Config
 from mover.config.config import SERVICE_MODE
-from mover.config.trainer_config import TRAIN_MODE
+from mover.config.trainer_config import TRAIN_MODE, EVAL_MODE
 
 from flask import Flask, request
 
@@ -50,5 +50,6 @@ if __name__ == '__main__':
 
     {
         SERVICE_MODE: run_service,
-        TRAIN_MODE: train
+        TRAIN_MODE: train,
+        EVAL_MODE: evaluate
     }[Config.MODE]()

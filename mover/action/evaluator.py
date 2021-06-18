@@ -16,6 +16,6 @@ def evaluate():
                 for predict, msg in zip(Summarizer.summarize(msgs), msgs)]
     predicts = reduce(add, predicts)
     Logger.info(
-        f'f1_score: {f1_score(labels, predicts)}, acc: {accuracy_score(labels, predicts)}, '
-        f'precision: {precision_score(labels, predicts)}, recall: {recall_score(labels, predicts)}'
+        f'f1_score: {f1_score(labels, predicts):.4f}, acc: {accuracy_score(labels, predicts):.4f}, '
+        f'precision: {precision_score(labels, predicts):.4f}, recall: {recall_score(labels, predicts):.4f}'
     )

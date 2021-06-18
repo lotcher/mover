@@ -2,6 +2,7 @@ import os
 from .config import Config
 
 TRAIN_MODE = 'train'
+EVAL_MODE = 'eval'
 
 
 class TrainerConfig(Config):

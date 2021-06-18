@@ -2,7 +2,7 @@ import argparse
 import json
 
 from .config import Config
-from .trainer_config import TrainerConfig
+from .trainer_config import TrainerConfig, EVAL_MODE
 
 _CONFIG_FILE, _CHECK_DIR, _MODE = ('config', 'check_dir', 'mode')
 
@@ -21,7 +21,7 @@ class CLI:
         )
         parser.add_argument(
             '--mode', '-m', dest=_MODE, required=False,
-            help='运行模式', choices=[Config.MODE, TrainerConfig.MODE]
+            help='运行模式', choices=[Config.MODE, TrainerConfig.MODE, EVAL_MODE]
         )
 
         return parser.parse_args()
@@ -36,5 +36,5 @@ class CLI:
         }
 
         Config.init(**configs)
-        if getattr(args, _MODE) == TrainerConfig.MODE:
+        if getattr(args, _MODE) in [TrainerConfig.MODE, EVAL_MODE]:
             TrainerConfig.init(**configs)
