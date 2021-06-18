@@ -10,7 +10,7 @@ _CONFIG_FILE, _CHECK_DIR, _MODE = ('config', 'check_dir', 'mode')
 class CLI:
     @classmethod
     def parse(cls):
-        parser = argparse.ArgumentParser(description='Hill命令行参数')
+        parser = argparse.ArgumentParser(description='Mover命令行参数')
         parser.add_argument(
             '--config', '-f', dest=_CONFIG_FILE, required=True,
             help='默认加载的配置文件路径，格式为json'
