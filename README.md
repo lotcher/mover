@@ -3,7 +3,7 @@
 
 包含便捷的训练、评估及便捷的服务部署。模型支持增量学习，支持使用GPU或者CPU训练或预测。
 
-<img src="http://lbj.wiki/static/images/6ce9a902-cfe1-11eb-9928-00163e30ead3.png" alt="image-20210618110105425" style="zoom: 25%;" />
+![image-20220105100555235](http://lbj.wiki/static/images/03f3b1fc-6dcc-11ec-9928-00163e30ead3.png)
 
 ## 使用说明
 
@@ -38,19 +38,21 @@
 
 4. 按照需求关联指定的配置文件后执行模式**「python3 main.py --help」**
 
-   > usage: main.py [-h] --config CONFIG [--check_dir CHECK_DIR]
-   >                [--mode {service,train,eval}]
-   >
-   > Mover命令行参数
-   >
-   > optional arguments:
-   >   -h, --help            show this help message and exit
-   > 
-   >   --config CONFIG, -f CONFIG      默认加载的配置文件路径，格式为json
-   > 
-   >   --check_dir CHECK_DIR, -c CHECK_DIR      默认加载的模型参数文件路径
-   > 
-   >   --mode {service,train,eval}, -m {service,train,eval}    运行模式
+   ```shell
+   usage: main.py [-h] --config CONFIG [--check_dir CHECK_DIR]
+               [--mode {service,train,eval}]
+   
+   Mover命令行参数
+   
+   optional arguments:
+   -h, --help            show this help message and exit
+   
+   --config CONFIG, -f CONFIG      默认加载的配置文件路径，格式为json
+   
+   --check_dir CHECK_DIR, -c CHECK_DIR      默认加载的模型参数文件路径
+   
+   --mode {service,train,eval}, -m {service,train,eval}    运行模式
+   ```
 
 
 
